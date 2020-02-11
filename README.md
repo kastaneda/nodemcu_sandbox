@@ -12,3 +12,6 @@ Quick notes:
  - GPIO 4 == LED (on my board)
     - HIGH means LED off
     - LOW means LED on
+ - `dofile('main.lua');`
+ - `=file.remove('main.lua');`
+ - `=file.remove('main.lc');`
