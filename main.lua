@@ -7,3 +7,5 @@ do
     gpio.write(4, gpio.HIGH);
     tmr.delay(i);
 end
+
+dofile('simple_webserver.lua');
