@@ -23,3 +23,8 @@ Quick notes:
     - Power consumption (measured on 5V USB port):
         - 80..100 mA while benchmarking
         - 30 mA on idle
+ - `sudo apt install mosquito mosquito-clients`
+ - `mosquitto_sub -h 127.0.0.1 -t "#" -v` (monitor all topics)
+ - `mosquitto_pub -t "/test/topic" -m "Hello, world"` (just to test)
+    - `mosquitto_pub -t /test/topic -m set_high`
+    - `mosquitto_pub -t /test/topic -m set_low`
