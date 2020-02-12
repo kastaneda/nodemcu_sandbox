@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>WebSockets demo</title>
+    <style>
+      main { max-width: 40em }
+    </style>
+  </head>
+  <body>
+
+    <main>
+      <h1>WebSockets demo</h1>
+
+      <p>Press <kbd>F12</kbd>, because now everything will go
+         to the <code>console.log()</code>, haha.</p>
+
+      <p>There might be some IoT MQTT Dashboard in future!</p>
+    </main>
+
+    <script src="mosquitto.js"></script>
+    <script>
+
+      mosq = new Mosquitto();
+
+      mosq.onconnect = function(rc) {
+        console.log('Connected to WebSocket server', rc);
+      };
+
+      mosq.ondisconnect = function(rc) {
+        console.log('Connection lost', rc);
+      }
+
+      mosq.onmessage = function(topic, payload, qos) {
+        console.log('Message', topic, payload, qos);
+      };
+
+      mosq.connect('ws://localhost:9001');
+      mosq.subscribe('#', 0);
+
+    </script>
+
+  </body>
+</html>

@@ -10,8 +10,8 @@ Quick notes:
  - `java -jar ESPlorer.jar`
  - `=print(file.getcontents('init.lua'))`
  - GPIO 4 == LED (on my board)
-    - HIGH means LED off
-    - LOW means LED on
+    - HIGH means internal LED is off
+    - LOW means internal LED is on
  - `dofile('main.lua');`
  - `=file.remove('main.lua');`
  - `=file.remove('main.lc');`
@@ -42,4 +42,18 @@ stdbuf -oL -eL mosquitto_sub -t "#" | \
 stdbuf -oL -eL grep "button pressed" | \
 while read line; do \
 play -q /usr/share/sounds/freedesktop/stereo/dialog-information.oga; done
+```
+
+Websockets
+----------
+
+```
+# File /etc/mosquitto/conf.d/websockets.conf
+
+# default one
+port 1883
+
+# extra
+listener 9001
+protocol websockets
 ```
