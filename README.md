@@ -15,3 +15,5 @@ Quick notes:
  - `dofile('main.lua');`
  - `=file.remove('main.lua');`
  - `=file.remove('main.lc');`
+ - `while /bin/true; do read x; wget http://192.168.0.171/ -O -; done`
+    - damn Chromium _always_ send two requests, to `/` and to `/favicon.ico`
