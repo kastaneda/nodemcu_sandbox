@@ -17,3 +17,9 @@ Quick notes:
  - `=file.remove('main.lc');`
  - `while /bin/true; do read x; wget http://192.168.0.171/ -O -; done`
     - damn Chromium _always_ send two requests, to `/` and to `/favicon.ico`
+ - `ab -n25 http://192.168.0.171/`
+    - Requests per second:    39.88 [#/sec] (mean)
+    - Time per request:       25.073 [ms] (mean)
+    - Power consumption (measured on 5V USB port):
+        - 80..100 mA while benchmarking
+        - 30 mA on idle
