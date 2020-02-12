@@ -1,8 +1,10 @@
+-- hardware, heh
 gpio.mode(4, gpio.OUTPUT);
+gpio.mode(1, gpio.INT, gpio.PULLUP)
 
--- init mqtt client without logins, keepalive timer 120s
-m = mqtt.Client(node.chipid(), 120)
--- m = mqtt.Client("clientid", 120, "user", "password")
+-- init mqtt client without logins, keepalive timer 10s
+m = mqtt.Client(node.chipid(), 10)
+-- m = mqtt.Client("clientid", 10, "user", "password")
 
 -- setup Last Will and Testament (optional)
 -- Broker will publish a message with qos = 0, retain = 0, data = "offline"
@@ -31,7 +33,7 @@ m:on("overflow", function(client, topic, data)
   print(topic .. " partial overflowed message: " .. data )
 end)
 
--- for TLS: m:connect("192.168.0.38", secure-port, 1)
+-- for TLS: m:connect("192.168.0.38", secure-port, true)
 m:connect("192.168.0.38", 1883, false, function(client)
   print("connected")
   -- Calling subscribe/publish only makes sense once the connection
@@ -49,5 +51,8 @@ function(client, reason)
   print("failed reason: " .. reason)
 end)
 
-m:close();
--- you can call m:connect again
+-- onkeyup
+gpio.trig(1, "up", function()
+  print("button pressed");
+  m:publish("/test", "button pressed", 0, 0)
+end)

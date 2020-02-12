@@ -28,3 +28,18 @@ Quick notes:
  - `mosquitto_pub -t "/test/topic" -m "Hello, world"` (just to test)
     - `mosquitto_pub -t /test/topic -m set_high`
     - `mosquitto_pub -t /test/topic -m set_low`
+
+```
+# press Enter to toggle LED
+while /bin/true; do
+read x; mosquitto_pub -t /test/topic -m set_low;
+read x; mosquitto_pub -t /test/topic -m set_high; done
+```
+
+```
+# make sound on each button click
+stdbuf -oL -eL mosquitto_sub -t "#" | \
+stdbuf -oL -eL grep "button pressed" | \
+while read line; do \
+play -q /usr/share/sounds/freedesktop/stereo/dialog-information.oga; done
+```
