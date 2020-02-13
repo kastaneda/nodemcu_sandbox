@@ -69,4 +69,8 @@ print("Connecting to WiFi access point...")
 wifi.setmode(wifi.STATION)
 wifi.sta.config({ssid=SSID, pwd=PASSWORD, save=false})
 -- wifi.sta.connect() not necessary because config() uses auto-connect=true by default
+
+-- TODO
+-- sntp.sync("192.168.0.12")
+
 collectgarbage()
