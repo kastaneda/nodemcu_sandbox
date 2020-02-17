@@ -57,3 +57,8 @@ port 1883
 listener 9001
 protocol websockets
 ```
+
+OTA
+---
+
+ - https://github.com/nodemcu/nodemcu-firmware/tree/master/lua_examples/luaOTA
