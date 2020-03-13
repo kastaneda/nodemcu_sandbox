@@ -21,9 +21,9 @@ Topic hierarchy
 ---------------
 
 ```
-/test                   some root namespace
-    /boardXXXXXXXX      board root
-        /led01          actuator
-            /status     echo status
-            /set        method to set
+test                    some root namespace
+    boardXXXXXXXX       board root
+        led01           actuator
+            status      device will publish '0' or '1' here
+                set     device will accept values '0' and '1' from this topic
 ```
