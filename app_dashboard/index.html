@@ -29,7 +29,7 @@
       };
 
       mosq.ondisconnect = function(rc) {
-        console.log('Connection lost', rc);
+        console.warn('Connection lost', rc);
       }
 
       mosq.onmessage = function(topic, payload, qos) {
