@@ -5,8 +5,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>WebSockets demo</title>
     <style>
-      main { max-width: 40em }
+      body { max-width: 40em }
       .no-js { color: maroon }
+
+      .gauge {
+        width: 240px;
+        height: 240px;
+        border-radius: 20px;
+        color: #fff;
+        background: #999;
+        text-align: center;
+        display: table-cell;
+        vertical-align: middle;
+        overflow: clip;
+        position: relative;
+      }
+
+      .gauge .value {
+        font-size: 72px;
+      }
+
+      .gauge .title,
+      .gauge .ping {
+        position: absolute;
+        width: 100%;
+        color: #ccc;
+      }
+      .gauge .title { top: 20px }
+      .gauge .ping { bottom: 20px }
+
     </style>
   </head>
   <body>
@@ -26,7 +53,11 @@
 
       <p>There might be some IoT MQTT Dashboard in future!</p>
 
-      <div style="font-size: 400%" title="Gauge">12.3%</div>
+      <div class="gauge">
+        <div class="title">Title of the gauge</div>
+        <div class="value">12.3%</div>
+        <div class="ping">Last sync: 15 sec ago</div>
+      </div>
 
     </main>
 
