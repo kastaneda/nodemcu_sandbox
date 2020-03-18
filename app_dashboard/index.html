@@ -74,20 +74,36 @@
 
       mosq = new Mosquitto();
 
+      reconnectAttempts = 0;
+      reconnectAttemptsMax = 10;
+      reconnectAttemptsDelay = 250;
+
       mosq.onconnect = function(rc) {
         console.log('Connected to WebSocket server', rc);
       };
-
-      mosq.ondisconnect = function(rc) {
-        console.warn('Connection lost', rc);
-      }
 
       mosq.onmessage = function(topic, payload, qos) {
         console.log('Message', topic, payload, qos);
       };
 
-      mosq.connect('ws://localhost:9001');
-      mosq.subscribe('#', 0);
+      myConnect = function () {
+        mosq.connect('ws://localhost:9001');
+        mosq.ws.onerror = null;
+        mosq.subscribe('#', 0);
+      };
+
+      mosq.ondisconnect = function(rc) {
+        console.warn('Connection lost', rc);
+        if (++reconnectAttempts <= reconnectAttemptsMax) {
+          console.log('Trying to reconnect, attempt %d ...', reconnectAttempts);
+          setTimeout(myConnect, reconnectAttemptsDelay);
+        } else {
+          console.warn('Stop automatic reconnect attempts');
+          // Show 'Reconnect' button
+        }
+      }
+
+      myConnect();
 
     </script>
 
