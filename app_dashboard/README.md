@@ -21,9 +21,13 @@ Topic hierarchy
 ---------------
 
 ```
-test                    some root namespace
+dk487                   some root namespace
     boardXXXXXXXX       board root
-        led01           actuator
-            status      device will publish '0' or '1' here
-                set     device will accept values '0' and '1' from this topic
+        led01           actuator (oh, really)
+            dt          device will publish '0' or '1' here
+            set         device will accept values '0' and '1' from this topic
+        button01        sensor namespace
+            dt          0/1
 ```
+
+Sensor/actuator status: offline, online but not connected, online operated.
