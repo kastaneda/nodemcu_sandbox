@@ -61,6 +61,31 @@
   |                                         |                  |
   +-----------------------------------------+------------------+
 
+  <style>
+    .mqtt-offline .requires-mqtt { opacity: .5 }
+    .board01-offline .if-board01,
+    .board01-online .if-no-board01 { display: none }
+    .board01-online .if-board01,
+    .board01-offline .if-no-board01 { display: block }
+  </style>
+
+  <body class="mqtt-online board01-offline">
+    <div class="widgets-containter requires-mqtt">
+      <div class="gauge">
+        <div class="value if-board01">12.3%</div>
+        <div class="value if-no-board01">Offline</div>
+      </div>
+    </div>
+  </body>
+
+  <script>
+    function onBoardDisconnect() {
+      var b = document.querySelector('body');
+      b.classList.add('board01-offline');
+      b.classList.remove('board01-online');
+    }
+  </script>
+
 -->
 
     <main>
