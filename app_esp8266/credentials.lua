@@ -1,3 +1,3 @@
 -- Credentials
-SSID = "eq_guest"
-PASSWORD = "1234567890"
+SSID = "ostara"
+PASSWORD = "20200320"
