@@ -25,9 +25,11 @@ m:on("message", function(client, topic, data)
   if topic == "test/board"..node.chipid().."/led01/set" then
     if data == 1 or data == "1" then
       gpio.write(4, gpio.HIGH)
+      client:publish("test/board"..node.chipid().."/led01/dt", "1", 0, 0)
     end
     if data == 0 or data == "0" then
       gpio.write(4, gpio.LOW)
+      client:publish("test/board"..node.chipid().."/led01/dt", "0", 0, 0)
     end
   end
 
