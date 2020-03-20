@@ -26,15 +26,17 @@ Quick notes:
         - 30 mA on idle
  - `sudo apt install mosquito mosquito-clients`
  - `mosquitto_sub -h 127.0.0.1 -t "#" -v` (monitor all topics)
- - `mosquitto_pub -t "/test/topic" -m "Hello, world"` (just to test)
-    - `mosquitto_pub -t /test/topic -m set_high`
-    - `mosquitto_pub -t /test/topic -m set_low`
+ - `mosquitto_pub -t "test/sample_topic" -m "Hello, world"` (just to test)
+    - `mosquitto_pub -t test/sample_topic -m set_high`
+    - `mosquitto_pub -t test/sample_topic -m set_low`
+ - file.rename('init.lua', '_init.lua')
+ - file.rename('_init.lua', 'init.lua')
 
 ```
 # press Enter to toggle LED
 while /bin/true; do
-read x; mosquitto_pub -t /test/topic -m set_low;
-read x; mosquitto_pub -t /test/topic -m set_high; done
+read x; mosquitto_pub -t test/board3505704/led01/set -m 1;
+read x; mosquitto_pub -t test/board3505704/led01/set -m 0; done
 ```
 
 ```
@@ -120,6 +122,7 @@ MQTT + WS + JS
 По традиции, начнём с самых тупых задач: при помощи всей этой фигни
 мы будем мигать светодиодиком. Ха-ха.
 
+
 Да, кстати
 ----------
 
@@ -130,3 +133,14 @@ https://play.google.com/store/apps/details?id=net.routix.mqttdash
  - подписывается на нужный топик и показывает последний полученный статус
  - по нажатию на кнопку отправляет нужную команду на топик
 
+
+MQTT topics
+-----------
+
+ - test
+    - common
+        - roll_call
+    - board3505704
+        - led01
+            - dt
+            - set
