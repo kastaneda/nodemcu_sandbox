@@ -6,5 +6,5 @@ stdbuf -oL -eL grep "button pressed" | \
 while read line
 do
     echo Button pressed
-    play -q /usr/share/sounds/freedesktop/stereo/dialog-information.oga
+    paplay /usr/share/sounds/freedesktop/stereo/dialog-information.oga
 done
