@@ -3,8 +3,9 @@
 -- Built-in LED
 gpio.mode(4, gpio.OUTPUT)
 
--- Hardware button
--- gpio.mode(1, gpio.INT, gpio.PULLUP)
+-- Input button (D1-to-GND)
+gpio.write(1, gpio.HIGH)
+gpio.mode(1, gpio.INT, gpio.PULLUP)
 
 -- Init MQTT client connection w/o credentials, keepalive timer 10s
 m = mqtt.Client(node.chipid(), 10)
@@ -50,7 +51,6 @@ m:connect("192.168.0.38", 1883, false, function(client)
   print ("Connected to MQTT broker")
   client:subscribe("test/common/ping", 0)
   client:subscribe("test/board"..node.chipid().."/led01/set", 0)
-  -- client:subscribe({["test/board"..node.chipid().."/led01/set"]=0,["test/common/ping"]=0})
   client:publish("test/common", "esp8266 board "..node.chipid().." online", 0, 0)
 end,
 function(client, reason)
@@ -58,7 +58,13 @@ function(client, reason)
 end)
 
 -- Hardware button event: onKeyUp
--- gpio.trig(1, "up", function()
---   print("button pressed");
---   m:publish("test/button", "button pressed", 0, 0)
--- end)
+gpio.trig(1, "up", function()
+  print("button pressed");
+  m:publish("test/button", "button pressed", 0, 0)
+end)
+
+
+-- Tadaaa
+wifi.sta.sleeptype(wifi.LIGHT_SLEEP)
+
+collectgarbage()
