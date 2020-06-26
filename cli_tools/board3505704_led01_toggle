@@ -1,0 +1,13 @@
+#!/bin/sh
+echo Press Enter to toggle LED status
+echo Press Ctrl-C to exit
+while /bin/true
+do
+    read x
+    mosquitto_pub -t test/board3505704/led01/set -m 1
+    echo LED on
+
+    read x
+    mosquitto_pub -t test/board3505704/led01/set -m 0
+    echo LED off
+done

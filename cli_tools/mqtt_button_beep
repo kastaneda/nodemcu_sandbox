@@ -1,0 +1,10 @@
+#!/bin/sh
+echo Press Ctrl-C to exit
+
+stdbuf -oL -eL mosquitto_sub -t "#" | \
+stdbuf -oL -eL grep "button pressed" | \
+while read line
+do
+    echo Button pressed
+    play -q /usr/share/sounds/freedesktop/stereo/dialog-information.oga
+done
